@@ -6,7 +6,7 @@ class BotsCard extends StatelessWidget {
   final String lastRun;
   final String nextRun;
 
-  BotsCard(
+  const BotsCard(
       {super.key,
       required this.name,
       required this.status,
@@ -32,25 +32,25 @@ class BotsCard extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 const SizedBox(
-                  width: 2,
+                  width: 25,
                 ),
-                Text(
-                  name,
-                  style: const TextStyle(
-                    color: Color.fromRGBO(68, 30, 174, 1),
-                    fontWeight: FontWeight.bold,
+                Expanded(
+                  child: Text(
+                    name,
+                    style: const TextStyle(
+                      color: Color.fromRGBO(68, 30, 174, 1),
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                 ),
-                const SizedBox(
-                  width: 50,
-                ),
-                Text(status == 'enabled' ? 'Active' : 'Inactive',
-                    style: TextStyle(
+                IconButton(
+                    onPressed: () {},
+                    icon: Icon(
+                      Icons.circle,
                       color: status == 'enabled' ? Colors.green : Colors.red,
-                      fontWeight: FontWeight.bold,
                     )),
                 const SizedBox(
-                  width: 2,
+                  width: 25,
                 )
               ],
             )),

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 enum Status {
-  enable,
+  enabled,
   disable;
 }
 
@@ -17,10 +17,10 @@ class MyStatusMenu extends StatefulWidget {
 class _MyStatusMenuState extends State<MyStatusMenu> {
   final TextEditingController statusController = TextEditingController();
   Status selectedStatus =
-      Status.enable; // Variable para almacenar el estado seleccionado
+      Status.enabled; // Variable para almacenar el estado seleccionado
 
   // Constructor
-  _MyStatusMenuState() : selectedStatus = Status.enable; // Valor inicial
+  _MyStatusMenuState() : selectedStatus = Status.enabled; // Valor inicial
 
   @override
   Widget build(BuildContext context) {

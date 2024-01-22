@@ -1,4 +1,5 @@
 import 'package:app/components/Bots/Widget/my_row.dart';
+import 'package:app/components/Bots/Widget/run_days.dart';
 import 'package:flutter/material.dart';
 
 class BotsComplete extends StatelessWidget {
@@ -6,10 +7,10 @@ class BotsComplete extends StatelessWidget {
   final String status;
   final String lastRun;
   final String nextRun;
-  final int runHours;
+  final String runHours;
   final List<dynamic> runDays;
   final String path;
-  final int runTimes;
+  final String runTimes;
 
   const BotsComplete(
       {super.key,
@@ -27,11 +28,7 @@ class BotsComplete extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Container(
-        padding: const EdgeInsets.all(20),
-        decoration: BoxDecoration(
-            border: Border.all(
-                width: 2, color: const Color.fromRGBO(68, 30, 174, 1)),
-            borderRadius: BorderRadius.circular(20)),
+        padding: const EdgeInsets.all(10),
         child: ListView(
           children: [
             MyRow(name: name, output: 'Name'),
@@ -78,48 +75,39 @@ class BotsComplete extends StatelessWidget {
             const SizedBox(
               height: 25,
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                GestureDetector(
-                  onTap: () {
-                    Navigator.pushNamed(context, '/bots');
-                  },
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 0.0),
-                    child: Container(
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                          color: const Color.fromRGBO(68, 30, 174, 1)),
-                      padding: const EdgeInsets.all(15),
-                      width: 150,
-                      alignment: AlignmentDirectional.center,
-                      child: const Text(
-                        'Back',
-                        style: TextStyle(color: Colors.white),
-                      ),
-                    ),
+            const Text(
+              'Run days:',
+              style: TextStyle(
+                  color: Color.fromRGBO(68, 30, 174, 1),
+                  fontWeight: FontWeight.bold,
+                  fontSize: 18),
+            ),
+            const SizedBox(
+              height: 10,
+            ),
+            ButtonRender(days: runDays),
+            const SizedBox(
+              height: 25,
+            ),
+            GestureDetector(
+              onTap: () {
+                Navigator.pushNamed(context, '/update', arguments: name);
+              },
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 0.0),
+                child: Container(
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      color: const Color.fromRGBO(68, 30, 174, 1)),
+                  padding: const EdgeInsets.all(15),
+                  width: 150,
+                  alignment: AlignmentDirectional.center,
+                  child: const Text(
+                    'Modify',
+                    style: TextStyle(color: Colors.white),
                   ),
                 ),
-                GestureDetector(
-                  onTap: () {},
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 0.0),
-                    child: Container(
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                          color: const Color.fromRGBO(68, 30, 174, 1)),
-                      padding: const EdgeInsets.all(15),
-                      width: 150,
-                      alignment: AlignmentDirectional.center,
-                      child: const Text(
-                        'Change',
-                        style: TextStyle(color: Colors.white),
-                      ),
-                    ),
-                  ),
-                )
-              ],
+              ),
             )
           ],
         ),

@@ -20,7 +20,7 @@ class BotViewPage extends StatelessWidget {
     }
 
     return Scaffold(
-      appBar: MyAppBar(data: '$routeArgs - Complete view', boolData: true),
+      appBar: const MyAppBar(data: 'Complete view', boolData: true),
       body: FutureBuilder(
         future: getBotData(),
         builder: (context, snapshot) {

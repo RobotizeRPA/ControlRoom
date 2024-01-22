@@ -3,6 +3,7 @@ import 'package:app/pages/bots_view_page.dart';
 import 'package:app/pages/create_bot.dart';
 import 'package:app/pages/home_page.dart';
 import 'package:app/pages/login_page.dart';
+import 'package:app/pages/update_bot.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -22,7 +23,8 @@ class MyApp extends StatelessWidget {
         '/home': (context) => HomePage(),
         '/bots': (context) => BotsPage(),
         '/bots_view': (context) => BotViewPage(),
-        '/create': (context) => const CreatePage()
+        '/create': (context) => const CreatePage(),
+        '/update': (context) => UpdatePage()
       },
     );
   }

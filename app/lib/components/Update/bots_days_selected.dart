@@ -1,17 +1,19 @@
 import 'package:app/components/Create/Widgets/individual_button.dart';
 import 'package:flutter/material.dart';
 
-class MyDaysButton extends StatefulWidget {
-  final Function(List<String>) onDaysChanged;
+class UpdateDaysButton extends StatefulWidget {
+  final Function(List<dynamic>) onDaysChanged;
+  final List<dynamic> selectedDays;
 
-  const MyDaysButton({super.key, required this.onDaysChanged});
+  const UpdateDaysButton(
+      {super.key, required this.onDaysChanged, required this.selectedDays});
 
   @override
-  State<MyDaysButton> createState() => _MyDaysButtonState();
+  State<UpdateDaysButton> createState() => _MyDaysButtonState();
 }
 
-class _MyDaysButtonState extends State<MyDaysButton> {
-  List<String> selectedDays = [];
+class _MyDaysButtonState extends State<UpdateDaysButton> {
+  late List<dynamic> selectedDays = widget.selectedDays;
 
   void _handleTap(String day) {
     setState(() {

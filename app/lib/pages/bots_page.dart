@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:app/components/Bots/bots_view.dart';
 import 'package:app/components/Widgets/app_bar.dart';
+import 'package:app/components/Widgets/drawer_menu.dart';
 import 'package:app/models/bots_model.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
@@ -26,7 +27,6 @@ class _BotsPageState extends State<BotsPage> {
     var response = await http.get(Uri.http('192.168.0.195:3001', 'tasks'));
 
     var jsonData = jsonDecode(response.body);
-    print(jsonData);
     List<BotViewModel> tempBotsList = [];
     for (var eachBot in jsonData) {
       final bot = BotViewModel(
@@ -47,6 +47,7 @@ class _BotsPageState extends State<BotsPage> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: const MyAppBar(data: 'View Bots', boolData: true),
+        // drawer: const DrawerMenu(),
         body: FutureBuilder(
           future: botsFuture,
           builder: (context, snapshot) {

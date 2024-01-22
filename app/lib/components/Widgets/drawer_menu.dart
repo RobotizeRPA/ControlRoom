@@ -46,7 +46,7 @@ class DrawerMenu extends StatelessWidget {
                 Icons.exit_to_app,
                 color: Color.fromRGBO(68, 30, 174, 1),
               ),
-              title: const Text('Cerrar sesion'),
+              title: const Text('Log Out'),
               onTap: () {
                 Navigator.pushNamed(context, '/login');
               },

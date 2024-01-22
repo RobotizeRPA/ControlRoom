@@ -3,8 +3,13 @@ import 'package:flutter/material.dart';
 class IndividualButton extends StatelessWidget {
   final void Function()? onTap;
   final String child;
+  final bool isSelected;
 
-  const IndividualButton({super.key, required this.child, required this.onTap});
+  const IndividualButton(
+      {super.key,
+      required this.child,
+      required this.onTap,
+      required this.isSelected});
 
   @override
   Widget build(BuildContext context) {
@@ -12,7 +17,9 @@ class IndividualButton extends StatelessWidget {
       onTap: onTap,
       child: Container(
         decoration: BoxDecoration(
-            color: const Color.fromRGBO(68, 30, 174, 1),
+            color: isSelected
+                ? const Color.fromARGB(111, 68, 30, 174)
+                : const Color.fromRGBO(68, 30, 174, 1),
             borderRadius: BorderRadius.circular(10)),
         width: 75,
         padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),

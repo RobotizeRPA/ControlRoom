@@ -14,14 +14,23 @@ class ButtonRoom extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Navigator.pushNamed(context, onTap);
+        onTap != '/bots' && (onTap != '/create')
+            ? showDialog<void>(
+                context: context,
+                builder: (BuildContext context) {
+                  return const AlertDialog(
+                    title: Text('Option Disabled'),
+                    content: Text('Under develope'),
+                  );
+                })
+            : Navigator.pushNamed(context, onTap);
       },
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 5.0, vertical: 5),
         child: Container(
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(10),
-            color: Color.fromRGBO(68, 30, 174, 1),
+            color: const Color.fromRGBO(68, 30, 174, 1),
           ),
           // padding: const EdgeInsets.all(15),
           alignment: AlignmentDirectional.center,

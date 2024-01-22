@@ -1,3 +1,4 @@
+import 'package:app/components/Create/Widgets/label_text.dart';
 import 'package:app/components/Create/create_input.dart';
 import 'package:app/components/Create/days_button.dart';
 import 'package:app/components/Create/dropmenu.dart';
@@ -19,6 +20,7 @@ class _CreatePageState extends State<CreatePage> {
   final runEveryController = TextEditingController();
   final runTimesController = TextEditingController();
   final pathController = TextEditingController();
+  final firtRunController = TextEditingController();
   // final days = TextEditingController();
   List<String> selectedDays = [];
 
@@ -35,6 +37,10 @@ class _CreatePageState extends State<CreatePage> {
     String runEvery = runEveryController.text;
     String runTimes = runTimesController.text;
     String path = pathController.text;
+    String nextRun = firtRunController.text;
+
+    if (status == '') status = 'enabled';
+    if (runTimes == '') runTimes = '0';
 
     var response = await http.post(
       Uri.http('192.168.0.195:3001', 'tasks'),
@@ -48,10 +54,9 @@ class _CreatePageState extends State<CreatePage> {
         'runHours': runEvery,
         'runDays': selectedDays,
         'path': path,
-        'nextRun': 'unknown'
+        'nextRun': nextRun
       }),
     );
-    print(response.statusCode);
 
     if (response.statusCode == 201) {
       Navigator.pushNamed(context, '/home');
@@ -67,18 +72,42 @@ class _CreatePageState extends State<CreatePage> {
             child: ListView(
           scrollDirection: Axis.vertical,
           children: [
-            CreateInput(controller: nameController, hintText: 'Name'),
             const SizedBox(
-              height: 25,
+              height: 10,
             ),
-            // CreateInput(controller: statusController, hintText: 'Status'),
+            const LabelText(text: 'Bot name:'),
             CreateInput(
-                controller: runEveryController,
-                hintText: 'Run Every (in hours)'),
-            const SizedBox(
-              height: 25,
+              controller: nameController,
+              hintText: 'Name',
+              keyboard: 'text',
             ),
-            CreateInput(controller: pathController, hintText: 'Path'),
+            const SizedBox(
+              height: 10,
+            ),
+            const LabelText(text: 'Run every:'),
+            CreateInput(
+              controller: runEveryController,
+              hintText: 'Run Every (in hours)',
+              keyboard: 'number',
+            ),
+            const SizedBox(
+              height: 10,
+            ),
+            const LabelText(text: 'First Run:'),
+            CreateInput(
+              controller: firtRunController,
+              hintText: 'Next Run',
+              keyboard: 'number',
+            ),
+            const SizedBox(
+              height: 10,
+            ),
+            const LabelText(text: 'Script path:'),
+            CreateInput(
+              controller: pathController,
+              hintText: 'Path',
+              keyboard: 'text',
+            ),
             MyDropMenu(
               statusController: statusController,
               runTimesController: runTimesController,
@@ -95,6 +124,10 @@ class _CreatePageState extends State<CreatePage> {
             ),
             const SizedBox(
               height: 25,
+            ),
+            const LabelText(text: 'Select the run days:'),
+            const SizedBox(
+              height: 10,
             ),
             MyDaysButton(onDaysChanged: _handleDaySelection),
             const SizedBox(
