@@ -18,16 +18,17 @@ export class TasksService {
             path: task.path,
             lastRun: 'unknown',
             nextRun: task.nextRun,
-            specificHour: task.specificHour
+            specificHour: task.specificHour,
+            lastRunStatus: 'unknown'
         })
-        return newTask
+        return {"task":newTask, "status": "ok"}
     }
 
     async updateStatus(name,newStatus: TaskModelUpdate){
         const findTask = await this.tasksModel.findOne({
             name: name
         })
-        
+
         if(findTask){
             newStatus.status ? findTask.status = newStatus.status : findTask.status = findTask.status
             newStatus.lastRun ? findTask.lastRun = newStatus.lastRun : findTask.lastRun = findTask.lastRun
@@ -37,6 +38,8 @@ export class TasksService {
             newStatus.path ? findTask.path = newStatus.path : findTask.path = findTask.path
             newStatus.nextRun ? findTask.nextRun = newStatus.nextRun : findTask.nextRun = findTask.nextRun
             newStatus.specificHour ? findTask.specificHour = newStatus.specificHour : findTask.specificHour = findTask.specificHour
+            newStatus.lastRunStatus ? findTask.lastRunStatus = newStatus.lastRunStatus : findTask.lastRunStatus = findTask.lastRunStatus
+            
             findTask.save()
             return 'Task updated'
         }
@@ -52,6 +55,19 @@ export class TasksService {
         })
 
         return findTask
+    }
+
+    async deleteTask(name: string){
+        const findTask = await this.tasksModel.deleteOne({
+            name: name
+        })
+
+        if(findTask.deletedCount === 1){
+            return 'Bot deleted succesfully'
+        }else{
+            return 'Error when trying to delete bot'
+        }
+
     }
 
 }

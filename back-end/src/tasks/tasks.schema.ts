@@ -31,6 +31,9 @@ export class Tasks {
 
     @Prop()
     specificHour: string
+
+    @Prop()
+    lastRunStatus: string
 }
 
 export const TasksSchema = SchemaFactory.createForClass(Tasks)

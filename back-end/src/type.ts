@@ -8,6 +8,7 @@ export interface TaskModel {
     path: string;
     nextRun: string;
     specificHour: string;
+    lastRunStatus: string
 }
 
 export interface TaskModelUpdate {
@@ -21,4 +22,5 @@ export interface TaskModelUpdate {
     path: string;
     nextRun: string;
     specificHour: string;
+    lastRunStatus: string
 }
